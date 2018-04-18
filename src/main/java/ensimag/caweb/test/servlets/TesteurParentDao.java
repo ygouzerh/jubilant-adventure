@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ensimag.caweb.servlets;
+package ensimag.caweb.test.servlets;
 
 import ensimag.caweb.beans.Parent;
 import ensimag.caweb.dao.DAOFactory;
 import ensimag.caweb.dao.ParentDao;
 import java.util.ArrayList;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,8 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 @WebServlet(name = "TesteurParentDao", urlPatterns = {"/test/parentDao"})
 public class TesteurParentDao extends AbstractTesteur {
     
-    ParentDao parentDao = ( (DAOFactory) getServletContext().getAttribute( "daofactory" ) ).getParentDao();
+    private ParentDao parentDao;
 
+    @Override
+    public void init() throws ServletException {
+        /* Gets the unique instance of DAOFactory and then creates a new ParentDao object and stocks it in parentDao  */
+        this.parentDao = ( (DAOFactory) getServletContext().getAttribute( "daofactory" ) ).getParentDao();
+    }
     @Override
     protected ArrayList<String> launcherTests(HttpServletRequest request) {
         ArrayList<String> results = new ArrayList<>();

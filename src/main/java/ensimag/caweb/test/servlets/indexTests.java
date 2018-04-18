@@ -1,4 +1,4 @@
-package ensimag.caweb.servlets;
+package ensimag.caweb.test.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

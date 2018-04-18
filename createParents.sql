@@ -8,7 +8,7 @@
  * Created: Apr 15, 2018
  */
 
-
+drop table parent;
 
 create table parent (
     id int not null primary key,

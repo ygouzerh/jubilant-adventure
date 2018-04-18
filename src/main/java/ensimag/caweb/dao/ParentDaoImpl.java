@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class ParentDaoImpl implements ParentDao {
     
     private final DAOFactory daoFactory;
-    private static final String SQL_SELECT_WITH_EMAIL_AND_PASSWORD = "SELECT email, password, nom FROM parent WHERE email=? AND password=rpad(?, 64, ' ')";
+    private static final String SQL_SELECT_WITH_EMAIL_AND_PASSWORD = "SELECT * FROM parent WHERE email=? AND password=rpad(?, 64, ' ')";
     private static final String SQL_DELETE = "DELETE FROM PARENT WHERE email=?";
     private static final String SQL_INSERT = "INSERT INTO parent VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public ParentDaoImpl( DAOFactory daoFactory ) {
@@ -98,15 +98,15 @@ public class ParentDaoImpl implements ParentDao {
      * and a bean (parent) which it returns.
      */
     private static Parent map( ResultSet resultSet ) throws SQLException {
-        Parent parent = new Parent(resultSet.getInt( "id" ),
+        Parent parent = new Parent(resultSet.getInt( "id" ),                                
+                                    resultSet.getString( "password" ),
                                     resultSet.getString( "email" ), 
                                     resultSet.getString( "nom" ),
                                     resultSet.getString( "prenom" ),
                                     resultSet.getString( "sexe" ),
                                     resultSet.getString( "adresse" ),
                                     resultSet.getString( "datenaissance" ),
-                                    resultSet.getString( "telephone" ),
-                                    resultSet.getString( "password" ));
+                                    resultSet.getString( "telephone" ));
         return parent;
     }
 

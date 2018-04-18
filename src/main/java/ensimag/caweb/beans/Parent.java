@@ -7,11 +7,13 @@ package ensimag.caweb.beans;
  */
 public class Parent extends Personne {
     
-    private String motDePasse;
-    private String telephone;
+    private String motDePasse;    
 
-    //TODO add datenaissance
-
+    public Parent(int id, String motDePasse, String email, String nom, String prenom, String sexe, String adresse, String dateNaissance, String telephone) {
+        super(id, email, nom, prenom, sexe, adresse, dateNaissance, telephone);
+        this.motDePasse = motDePasse;
+    }
+    
     public String getMotDePasse() {
         return motDePasse;
     }
@@ -19,18 +21,5 @@ public class Parent extends Personne {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-    
-    
-    
-    
-
    
 }

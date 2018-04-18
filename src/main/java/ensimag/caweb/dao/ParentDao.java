@@ -17,6 +17,7 @@ public interface ParentDao {
 
     Parent find( String email, String motDePasse ) throws DAOException;
     
+    void delete ( String email ) throws DAOException;
     //Add update function
     
     //Add delete function (if the family moved to another city for example)

@@ -10,25 +10,36 @@ package ensimag.caweb.beans;
  * @author
  */
 public class Personne {
-    
-    private Long      id;
+
+    private int id;
     private String    email;    
     private String    nom;    
     private String    prenom;
     private String    sexe;
     private String    adresse;
-    private String    salt;
-    private String    oblig;
-    //TODO add datenaissance
+    private String dateNaissance;
+    private String telephone;
 
-    public Long getId() {
+    public Personne(int id, String email, String nom, String prenom, String sexe,
+                    String adresse, String dateNaissance, String telephone) {
+        this.id = id;
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.adresse = adresse;
+        this.dateNaissance = dateNaissance;
+        this.telephone = telephone;
+    }    
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
-
+            
     public String getEmail() {
         return email;
     }
@@ -69,23 +80,20 @@ public class Personne {
         this.adresse = adresse;
     }
 
-    public String getSalt() {
-        return salt;
+    public String getDateNaissance() {
+        return dateNaissance;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }        
+    
+    public String getTelephone() {
+        return telephone;
     }
 
-    public String getOblig() {
-        return oblig;
-    }
-
-    public void setOblig(String oblig) {
-        this.oblig = oblig;
-    }
-    
-    
-    
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }  
     
 }

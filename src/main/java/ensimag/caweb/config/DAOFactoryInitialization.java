@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  */
 public class DAOFactoryInitialization implements ServletContextListener {
     
-    @Resource(name="jdbc/bibliotheque")
+    @Resource(name="jdbc/caweb")
     private DataSource ds;
 
     private static final String ATT_DAO_FACTORY = "daofactory";
@@ -37,5 +37,12 @@ public class DAOFactoryInitialization implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         // Nothing for the moment
     }
-    
+
+    public DataSource getDs() {
+        if(this.ds == null){
+            throw new NullPointerException("Unable to load the datasource");
+        }
+        return ds;
+    }
+        
 }

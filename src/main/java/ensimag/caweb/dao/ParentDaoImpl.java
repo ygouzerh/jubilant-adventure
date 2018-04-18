@@ -21,20 +21,30 @@ public class ParentDaoImpl implements ParentDao {
     
     private final DAOFactory daoFactory;
     private static final String SQL_SELECT_WITH_EMAIL_AND_PASSWORD = "SELECT email, password, nom FROM parent WHERE email=? AND password=rpad(?, 64, ' ')";
-
+    private static final String SQL_DELETE = "DELETE FROM PARENT WHERE email=?";
+    private static final String SQL_INSERT = "INSERT INTO parent VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public ParentDaoImpl( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
     }
-
-    
-    
+        
     @Override
-    public void add(Parent parent) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void add( Parent parent ) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = initializePreparedRequest( connection, SQL_INSERT, false, parent.getNom(), parent.getPrenom(), parent.getSexe(), parent.getDateNaissance(), parent.getAdresse(), parent.getEmail(), parent.getTelephone(), parent.getMotDePasse(), "rrr");           
+            resultSet = preparedStatement.executeQuery();            
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            closures( resultSet, preparedStatement, connection );
+        }
     }
 
     @Override
-    public Parent find(String email, String motDePasse) throws DAOException {
+    public Parent find( String email, String motDePasse ) throws DAOException {
         
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -61,19 +71,42 @@ public class ParentDaoImpl implements ParentDao {
         return parent;
     }
     
+    
+    /**
+     * Delete a parent
+     * @param email The identifier of a parent
+     */
+    @Override
+    public void delete( String email ) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = initializePreparedRequest( connection, SQL_DELETE, false, email);           
+            resultSet = preparedStatement.executeQuery();            
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            closures( resultSet, preparedStatement, connection );
+        }
+    }
+    
         
     /*
      * performs a mapping between a result of a request (resultSet)
      * and a bean (parent) which it returns.
      */
     private static Parent map( ResultSet resultSet ) throws SQLException {
-        Parent parent = new Parent();
-        
-        parent.setEmail( resultSet.getString( "email" ) );
-        parent.setMotDePasse( resultSet.getString( "password" ) );
-        parent.setNom(resultSet.getString( "nom" ));
-        // TODO need others ?
-
+        Parent parent = new Parent(resultSet.getInt( "id" ),
+                                    resultSet.getString( "email" ), 
+                                    resultSet.getString( "nom" ),
+                                    resultSet.getString( "prenom" ),
+                                    resultSet.getString( "sexe" ),
+                                    resultSet.getString( "adresse" ),
+                                    resultSet.getString( "datenaissance" ),
+                                    resultSet.getString( "telephone" ),
+                                    resultSet.getString( "password" ));
         return parent;
     }
 

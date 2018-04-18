@@ -10,12 +10,11 @@
     
     
     <h1>Vos enfants scolarisés:</h1>
-    
-    <p>une servlet s'occupera de lister les tous les enfants et de demander à cette vue de les
-    afficher ci-dessous (avec un lien vers la fiche correspondante)</p>
+    <h4>clique sur un enfant pour accéder à sa fiche</h4>
+
     
     <ul>
-	  <li><a href="Fiche_enfant.jsp">Jason</a> (on clique dessus pour accéder à sa fiche)</li>
+	  <li><a href="Fiche_enfant.jsp">Jason</a></li>
 	  <li>José</li>
 	  <li>Yohan</li>
 	  <li>Ayoub</li>

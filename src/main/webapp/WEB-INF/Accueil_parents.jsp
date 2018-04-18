@@ -13,7 +13,7 @@
     
     <h1>Bienvenue ${parent.sexe == 'm' ? 'M' : 'Mme'} ${parent.nom}</h1>
     <p>Pour modifier vos coordonnées cliquez <a href="ModifyInfo">ici</a></p>
-    <p>Pour accéder aux fiches de vos enfants scolarisés cliquez <a href="Liste_enfants.jsp">ici</a></p>
+    <p>Pour accéder aux fiches de vos enfants scolarisés cliquez <a href="DisplayChil">ici</a></p>
     
     <p>(Nouveau)La mairie vous invite à exprimer vos souhaits 
     pour les activités d'animation cliquez <a href="Expr_souhaits.jsp">ici</a>(

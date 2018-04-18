@@ -6,7 +6,10 @@
 package ensimag.caweb.servlets;
 
 import ensimag.caweb.beans.Parent;
+import ensimag.caweb.dao.DAOFactory;
+import ensimag.caweb.dao.ParentDao;
 import static ensimag.caweb.servlets.ParentsLogin.ATT_PARENT;
+import static ensimag.caweb.servlets.ParentsLogin.CONF_DAO_FACTORY;
 import static ensimag.caweb.servlets.ParentsLogin.LOGIN_VIEW;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,6 +30,14 @@ public class ModifyInfo extends HttpServlet {
     
     public static final String MODIFY_VIEW        = "/WEB-INF/Modif_infos.jsp";
     public static final String ATT_PARENT         = "parent";
+    
+    private ParentDao parentDao;
+    
+    @Override
+    public void init() throws ServletException {
+        /* Gets the unique instance of DAOFactory and then creates a new ParentDao object and stocks it in parentDao  */
+        this.parentDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getParentDao();
+    }
 
 
 

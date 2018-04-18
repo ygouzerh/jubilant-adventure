@@ -11,7 +11,7 @@
     <body>
     
     
-    <h1>Bienvenue M/Mme ${parent.nom}</h1>
+    <h1>Bienvenue ${parent.sexe == 'm' ? 'M' : 'Mme'} ${parent.nom}</h1>
     <p>Pour modifier vos coordonnées cliquez <a href="ModifyInfo">ici</a></p>
     <p>Pour accéder aux fiches de vos enfants scolarisés cliquez <a href="Liste_enfants.jsp">ici</a></p>
     

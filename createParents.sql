@@ -25,6 +25,7 @@ create table parent (
 
 insert into parent values (1,'toto','titi','f',to_date('2001-12-10', 'yyyy-mm-dd'),'roro','toto@gmail.com','076545433','toto','rrr');
 insert into parent values (2,'gogo','gigi','m',to_date('2001-12-10', 'yyyy-mm-dd'),'koko','gogo@gmail.com','073333333','gogo','rrr');
+insert into parent values (3,'fa3','gigi','m',to_date('2002-12-10', 'yyyy-mm-dd'),'koko','fofo@gmail.com','073333333','fofo','rrr');
 
 select * from parent;
 

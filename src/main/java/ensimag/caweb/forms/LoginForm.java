@@ -6,6 +6,8 @@ import ensimag.caweb.dao.ParentDao;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import static ensimag.caweb.forms.ValidationUtilitaire.*;
+
 
 /**
  *
@@ -27,14 +29,6 @@ public class LoginForm {
         
     }
     
-    public String getResult() {
-        return result;
-    }
-
-    public Map<String, String> getErrors() {
-        return errors;
-    }
-
     public Parent verifyLogin(HttpServletRequest request) {
         String email = fieldName( request, EMAIL );
         String password = fieldName( request, PASSWORD );
@@ -67,53 +61,28 @@ public class LoginForm {
   
     }
     
-    
-    /**
-     * Validate the given email.
+    /*
+     * returns the result of the fill in (fail or success).
      */
-    private void validateEmail( String email ) throws Exception {
-        if ( email != null && !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
-            throw new Exception( "Merci de saisir une adresse mail valide." );
-        }
-    }
-
-    /**
-     * Validate the given password.
-     */
-    private void validatePassword( String motDePasse ) throws Exception {
-        if ( motDePasse != null ) {
-            if ( motDePasse.length() < 3 ) {
-                throw new Exception( "Le mot de passe doit contenir au moins 3 caractères." );
-            }
-        } else {
-            throw new Exception( "Merci de saisir votre mot de passe." );
-        }
+    public String getResult() {
+        return result;
     }
 
     /*
-     * add a new error.
+     * return errors to help the user fixing the problems.
+     */
+    public Map<String, String> getErrors() {
+        return errors;
+    }
+
+    /*
+     * adds a new error.
      */
     private void setError( String champ, String message ) {
         errors.put( champ, message );
     }
 
-    /*
-    * returns null if a field in empty, its value in lower case (if not a password) instead
-    */
-    private static String fieldName( HttpServletRequest request, String fieldName ) {
-        String value = request.getParameter( fieldName );
-        if ( value == null || value.trim().length() == 0 ) {
-            return null;
-        } else {
-            if (!fieldName.equals("password") && !fieldName.equals("motdepasse")) {
-                /* Converts to lower case if not a password */
-                return value.trim().toLowerCase();
-            } else {
-                return value.trim();
-            }
 
-        }
-    }
     
    
 }

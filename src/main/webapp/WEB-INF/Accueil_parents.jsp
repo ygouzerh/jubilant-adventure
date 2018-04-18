@@ -12,7 +12,7 @@
     
     
     <h1>Bienvenue M/Mme ${parent.nom}</h1>
-    <p>Pour modifier vos coordonnées cliquez <a href="Modif_infos.jsp">ici</a></p>
+    <p>Pour modifier vos coordonnées cliquez <a href="ModifyInfo">ici</a></p>
     <p>Pour accéder aux fiches de vos enfants scolarisés cliquez <a href="Liste_enfants.jsp">ici</a></p>
     
     <p>(Nouveau)La mairie vous invite à exprimer vos souhaits 
@@ -22,7 +22,7 @@
     
     
     <p>Pour modifier votre mot de passe cliquez <a href="Modif_mdp.jsp">ici</a></p>
-    <p>(il faut qu'on l'ajoute partout: un header ..)Pour vous déconnecter cliquez <a href="">ici</a></p> 
+    <p>(il faut qu'on l'ajoute partout: un header ..)Pour vous déconnecter cliquez <a href="ParentsSignout">ici</a></p> 
     
 
 

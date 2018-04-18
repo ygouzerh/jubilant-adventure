@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/caweb">
-    <Resource
-       auth="Container"
-       type="javax.sql.DataSource"
-       driverClassName="oracle.jdbc.OracleDriver"
-       url="jdbc:oracle:thin:@ensioracle1.imag.fr:1521:ensioracle1"
-       maxTotal="2"
-       maxIdle="1"
-       maxWaitMillis="20000"
-       name="jdbc/bibliotheque"
-       password=""
-       username=""/>
+  <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="1" maxTotal="2" maxWaitMillis="20000" name="jdbc/caweb" password="Qdgjlmrini1996" type="javax.sql.DataSource" url="jdbc:oracle:thin:@ensioracle1.imag.fr:1521:ensioracle1" username="mrinia"/>
 </Context>

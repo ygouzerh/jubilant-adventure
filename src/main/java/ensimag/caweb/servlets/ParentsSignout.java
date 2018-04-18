@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author ayoubmrini424
  */
-@WebServlet(name = "ParentsSingout", urlPatterns = {"/ParentsSingout"})
-public class ParentsSingout extends HttpServlet {
+@WebServlet(name = "ParentsSingout", urlPatterns = {"/ParentsSignout"})
+public class ParentsSignout extends HttpServlet {
     
-    public static final String LOGIN_VIEW = "/Connexion_parents";
+    public static final String LOGIN_VIEW = "/ParentsLogin";
 
 
     /**

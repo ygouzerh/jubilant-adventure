@@ -56,7 +56,7 @@ public class LoginForm {
             return null;
         }
         
-        
+               
         Parent parent = parentDao.find(email, password);
         
         if ( parent == null) {
@@ -98,14 +98,20 @@ public class LoginForm {
     }
 
     /*
-    * returns null if a field in empty, its value instead
+    * returns null if a field in empty, its value in lower case (if not a password) instead
     */
     private static String fieldName( HttpServletRequest request, String fieldName ) {
         String value = request.getParameter( fieldName );
         if ( value == null || value.trim().length() == 0 ) {
             return null;
         } else {
-            return value.trim();
+            if (!fieldName.equals("password") && !fieldName.equals("motdepasse")) {
+                /* Converts to lower case if not a password */
+                return value.trim().toLowerCase();
+            } else {
+                return value.trim();
+            }
+
         }
     }
     

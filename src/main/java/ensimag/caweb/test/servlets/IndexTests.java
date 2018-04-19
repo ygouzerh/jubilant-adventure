@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author ygouzerh
  */
 @WebServlet(name = "indexTests", urlPatterns = {"/tester"})
-public class indexTests extends HttpServlet {
+public class IndexTests extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

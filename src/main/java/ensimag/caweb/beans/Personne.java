@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package ensimag.caweb.beans;
-
+import ensimag.caweb.config.DateModifier;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 /**
  *
  * @author
  */
-public class Personne {
+public abstract class Personne {
 
     private int id;
     private String    email;    
@@ -17,18 +20,18 @@ public class Personne {
     private String    prenom;
     private String    sexe;
     private String    adresse;
-    private String dateNaissance;
+    private Date dateNaissance;
     private String telephone;
 
     public Personne(int id, String email, String nom, String prenom, String sexe,
-                    String adresse, String dateNaissance, String telephone) {
+                    String adresse, String dateNaissance, String formatDate, String telephone) {
         this.id = id;
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
         this.adresse = adresse;
-        this.dateNaissance = dateNaissance;
+        this.dateNaissance = DateModifier.dateFromString(dateNaissance, formatDate);
         this.telephone = telephone;
     }    
 
@@ -80,13 +83,17 @@ public class Personne {
         this.adresse = adresse;
     }
 
-    public String getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
-    }        
+    }
+    
+    public void setDateNaissance(String dateString, String format) {
+        this.dateNaissance = DateModifier.dateFromString(dateString, format);
+    }
     
     public String getTelephone() {
         return telephone;
@@ -95,5 +102,12 @@ public class Personne {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }  
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", adresse=" + adresse + ", dateNaissance=" + dateNaissance + ", telephone=" + telephone+" ,";
+    }
+    
+    
     
 }

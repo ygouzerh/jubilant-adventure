@@ -40,8 +40,10 @@ public class TesteurParentDao extends AbstractTesteur {
      */
     private String addParent(){
         System.out.println("add");
-        Parent parent = new Parent(28, "test1@parent.fr", "one", "test", "M",
-                                   "8 rue du test", "31/02/2018", "06251548", "toto");
+        Parent parent = new Parent(1, "toto", "test1@testing.com",
+                                    "test", "One",
+                                    "F", "8 street of testing",
+                                    "28/02/1998", "dd/MM/yyyy", "06281548");
         parentDao.add(parent);
         return "AddParent : Ok";
     }

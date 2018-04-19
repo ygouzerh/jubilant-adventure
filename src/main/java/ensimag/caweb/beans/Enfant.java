@@ -14,8 +14,11 @@ public class Enfant extends Personne {
     private String  classe;
     private String  regime;
 
-    public Enfant(String classe, String regime, int id, String email, String nom, String prenom, String sexe, String adresse, String dateNaissance, String telephone) {
-        super(id, email, nom, prenom, sexe, adresse, dateNaissance, telephone);
+    public Enfant(String classe, String regime, int id,
+                    String email, String nom, String prenom,
+                    String sexe, String adresse, String dateNaissance,
+                    String formatDate, String telephone) {
+        super(id, email, nom, prenom, sexe, adresse, dateNaissance, formatDate, telephone);
         this.classe = classe;
         this.regime = regime;
     }

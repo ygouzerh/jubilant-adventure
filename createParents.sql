@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,10 +8,17 @@
  * Created: Apr 15, 2018
  */
 
-drop table parent;
+drop table parents cascade constraints;
+drop table childrens cascade constraints;
 
-create table parent (
-    id int not null primary key,
+drop sequence id_parents_seq;
+drop sequence id_childrens_seq;
+
+create sequence id_parents_seq  start with 1 increment by 1;
+create sequence id_childrens_seq start with 1 increment by 1;
+
+create table parents (
+    id number default id_parents_seq.nextval primary key,
     nom varchar(30) not null,
     prenom varchar(30) not null,
     sexe char(1) not null,
@@ -23,9 +30,9 @@ create table parent (
     salt char(64) not null
 );
 
-create table enfant (
-    id int not null primary key,
-    idparent int not null references parent(id),
+create table childrens (
+    id number default id_childrens_seq.nextval primary key,
+    idparent number not null references parent(id),
     nom varchar(30) not null,
     prenom varchar(30) not null,
     sexe char(1) not null,
@@ -34,18 +41,13 @@ create table enfant (
     email varchar(50)
 );
 
-insert into enfant values (1,1,'gogo','gugu','m',to_date('2009-12-10', 'yyyy-mm-dd'),'roro','toto@gmail.com');
-insert into enfant values (2,1,'gogo','gygy','f',to_date('2016-12-10', 'yyyy-mm-dd'),'roro','fofo@gmail.com');
+-- The parents must be insert before the childrens
 
+insert into parents (nom, prenom, sexe, datenaissance, adresse, email, telephone, password, salt) values ('toto','titi','f',to_date('10/12/2001', 'dd/MM/yyyy'),'roro','toto@gmail.com','076545433','toto','rrr');
+insert into parents (nom, prenom, sexe, datenaissance, adresse, email, telephone, password, salt) values ('gogo','gigi','m',to_date('11/12/2001', 'dd/MM/yyyy'),'koko','gogo@gmail.com','073333333','gogo','rrr');
+insert into parents (nom, prenom, sexe, datenaissance, adresse, email, telephone, password, salt) values ('fa3','gigi','m',to_date('12/12/2001', 'dd/MM/yyyy'),'koko','fofo@gmail.com','073333333','fofo','rrr');
 
+insert into childrens (idparent, nom, prenom, sexe, datenaissance, adresse, email) values (1, 'gogo','gugu','m',to_date('10/12/2006', 'dd/MM/yyyy'),'roro','toto@gmail.com');
+insert into childrens (idparent, nom, prenom, sexe, datenaissance, adresse, email) values (2, 'gogo','gygy','f',to_date('11/12/2006', 'dd/MM/yyyy'),'roro','fofo@gmail.com');
 
-
-
-insert into parent values (1,'toto','titi','f',to_date('2001-12-10', 'yyyy-mm-dd'),'roro','toto@gmail.com','076545433','toto','rrr');
-insert into parent values (2,'gogo','gigi','m',to_date('2001-12-10', 'yyyy-mm-dd'),'koko','gogo@gmail.com','073333333','gogo','rrr');
-insert into parent values (3,'fa3','gigi','m',to_date('2002-12-10', 'yyyy-mm-dd'),'koko','fofo@gmail.com','073333333','fofo','rrr');
-
-select * from parent;
-
-SELECT email, password FROM parent WHERE email = 'toto@gmail.com' and password = 'toto' ;
-
+select * from parents;

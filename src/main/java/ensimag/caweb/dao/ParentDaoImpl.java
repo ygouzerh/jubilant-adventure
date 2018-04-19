@@ -20,9 +20,9 @@ import java.sql.SQLException;
 public class ParentDaoImpl implements ParentDao {
     
     private final DAOFactory daoFactory;
-    private static final String SQL_SELECT_WITH_EMAIL_AND_PASSWORD = "SELECT * FROM parent WHERE email=? AND password=rpad(?, 64, ' ')";
-    private static final String SQL_DELETE = "DELETE FROM PARENT WHERE email=?";
-    private static final String SQL_INSERT = "INSERT INTO parent VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_SELECT_WITH_EMAIL_AND_PASSWORD = "SELECT * FROM parents WHERE email=? AND password=rpad(?, 64, ' ')";
+    private static final String SQL_DELETE = "DELETE FROM PARENTS WHERE email=?";
+    private static final String SQL_INSERT = "INSERT INTO parents (nom, prenom, sexe, datenaissance, adresse, email, telephone, password, salt) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public ParentDaoImpl( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
     }
@@ -36,7 +36,6 @@ public class ParentDaoImpl implements ParentDao {
         try {
             connection = daoFactory.getConnection();
             preparedStatement = initializePreparedRequest( connection, SQL_INSERT, false,
-                                                            parent.getId(),
                                                             parent.getNom(), parent.getPrenom(),
                                                             parent.getSexe(), parent.getDateNaissanceSql(),
                                                             parent.getAdresse(), parent.getEmail(),

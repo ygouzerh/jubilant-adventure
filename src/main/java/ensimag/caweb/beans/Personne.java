@@ -86,6 +86,10 @@ public abstract class Personne {
     public Date getDateNaissance() {
         return dateNaissance;
     }
+    
+    public java.sql.Date getDateNaissanceSql(){
+        return DateModifier.convertDateUtilToSql(dateNaissance);
+    }
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;

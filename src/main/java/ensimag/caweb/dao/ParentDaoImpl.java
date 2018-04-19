@@ -38,7 +38,7 @@ public class ParentDaoImpl implements ParentDao {
             preparedStatement = initializePreparedRequest( connection, SQL_INSERT, false,
                                                             parent.getId(),
                                                             parent.getNom(), parent.getPrenom(),
-                                                            parent.getSexe(), parent.getDateNaissance(),
+                                                            parent.getSexe(), parent.getDateNaissanceSql(),
                                                             parent.getAdresse(), parent.getEmail(),
                                                             parent.getTelephone(), parent.getMotDePasse(),
                                                             "rrr");           
